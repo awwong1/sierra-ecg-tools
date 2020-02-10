@@ -35,6 +35,7 @@ PyObject *getList(size_t length, short *array)
     PyObject *list = PyList_New(length);
     for (int i = 0; i < length; ++i)
     {
+        // The units are scaled such that 200 == 1mv
         PyList_SetItem(list, i, PyFloat_FromDouble(array[i]));
     }
 
@@ -129,7 +130,7 @@ PySierraECG_getLeads(PyObject *self, PyObject *args)
 }
 
 static PyMethodDef PySierraECGMethods[] = {
-    {"getLeads", PySierraECG_getLeads, METH_VARARGS,
+    {"get_leads", PySierraECG_getLeads, METH_VARARGS,
      "Get leads data from ECG results in XML Sierra Philips format"},
     {NULL, NULL, 0, NULL}};
 
